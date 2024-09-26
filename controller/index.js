@@ -58,27 +58,7 @@ exports.Login = async (req, res) => {
     }
 };
 
-exports.Profile = async (req ,res)=>{
-    try{
-        const userId = req.query.userId;
-        if (!userId) {
-            return res.status(400).json({ error: 'User ID is required' });
-        }
-        const query = "SELECT * FROM profile WHERE userId = ?";
-        const profiles = await queryDb(query, [userId]); 
-        if (profiles.length === 0) {
-            return res.status(404).json({ msg: 'Invalid  Profile ID' });
-        }
-       res.status(200).json({ 
-            msg: "All Data Successfully", 
-            profiles
-        });
-    }
-    catch (error) {
-        console.error(error.stack);
-        res.status(500).json({error :'Database error'})
-    }
-}
+
 
 
 
